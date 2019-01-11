@@ -15,8 +15,6 @@
         <!-- Material Design Icons -->
         <!-- <link rel="stylesheet" href="//cdn.materialdesignicons.com/3.2.89/css/materialdesignicons.min.css"> -->
         <link type="text/css" rel="stylesheet" href="{{ asset('assets/app') }}/css/mdi.css">
-        <!-- Custom JS -->
-        <!-- <script src="main.js"></script> -->
         <!-- jQuery -->
         <script type="text/javascript" src="{{ asset('assets/app') }}/plugin/jquery-3.3.1/jquery.min.js"></script>
         <!-- Bootstrap 4 JS -->

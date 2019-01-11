@@ -73,31 +73,48 @@
                 @php
                     $user = \Auth::user();
                 @endphp
-                @if($user->aktif == 0 && $user->bukti_pembayaran == '')
-                <form method="post" id="formUpload" action="{{ url('d/konfirmasi/upload') }}" enctype="multipart/form-data">
-                    {{ csrf_field() }}
-                    <div class="form-group text-center">
-                        <label for="inputFile" class="text-center"><i class="fa fa-file"></i>&nbsp; Pilih File</label>
-                        <input type="file" id="inputFile" name="bukti_pembayaran" required>
-                        <button type="submit" id="btnSubmit" class="btn btn-primary"><i class="fa fa-fw fa-upload"></i> Unggah</button>
+                @if($user->level > 2 && $user->level < 6)
+                    @if($user->aktif == 0 && $user->bukti_pembayaran == '')
+                    <form method="post" id="formUpload" action="{{ url('d/konfirmasi/upload') }}" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        <div class="form-group text-center">
+                            <label for="inputFile" class="text-center"><i class="fa fa-file"></i>&nbsp; Pilih File</label>
+                            <input type="file" id="inputFile" name="bukti_pembayaran" required>
+                            <button type="submit" id="btnSubmit" class="btn btn-primary"><i class="fa fa-fw fa-upload"></i> Unggah</button>
+                        </div>
+                    </form>
+                    @elseif($user->aktif == 0 && $user->bukti_pembayaran != '')
+                    <div class="text-center col-12">
+                        <p class="box box-warning">Bukti pembayaran anda telah diunggah. <br>Menunggu konfirmasi dari panitia.</p>    
                     </div>
-                </form>
-                @elseif($user->aktif == 0 && $user->bukti_pembayaran != '')
-                <div class="text-center col-12">
-                    <p class="box-warning">Bukti pembayaran anda telah diunggah. <br>Menunggu konfirmasi dari panitia.</p>    
-                </div>
-                <form method="post" id="formUpload" action="{{ url('d/konfirmasi/upload') }}" enctype="multipart/form-data">
-                    {{ csrf_field() }}
-                    <div class="form-group text-center">
-                        <label for="inputFile" class="text-center"><i class="fa fa-file"></i>&nbsp; Pilih File</label>
-                        <input type="file" id="inputFile" name="bukti_pembayaran" required>
-                        <button type="submit" id="btnSubmit" class="btn btn-primary"><i class="fa fa-fw fa-upload"></i> Unggah</button>
-                    </div>
-                </form>
+                    <form method="post" id="formUpload" action="{{ url('d/konfirmasi/upload') }}" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        <div class="form-group text-center">
+                            <label for="inputFile" class="text-center"><i class="fa fa-file"></i>&nbsp; Pilih File</label>
+                            <input type="file" id="inputFile" name="bukti_pembayaran" required>
+                            <button type="submit" id="btnSubmit" class="btn btn-primary"><i class="fa fa-fw fa-upload"></i> Unggah</button>
+                        </div>
+                    </form>
+                    @else
+                        <div class="text-center">
+                            <p class="box box-success">Pembayaran anda telah dikonfirmasi</p>
+                        </div>
+                    @endif
                 @else
-                    <div class="text-center">
-                        <p class="btn btn-outline-success text-success">Pembayaran anda telah dikonfirmasi</p>
-                    </div>
+                    <form method="post" id="formUpload" action="{{ url('d/konfirmasi/upload/panitia') }}" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        <div class="form-group text-center">
+                            <div class="col-6 offset-3 text-center">
+                                <input type="email" id="input-userid" name="userid" class="form-control" placeholder="Email Pinru/Pinsa">
+                            </div>
+                            <br>
+                            <div id="file-input" style="display: none">
+                                <label for="inputFile" class="text-center"><i class="fa fa-file"></i>&nbsp; Pilih File</label>
+                                <input type="file" id="inputFile" name="bukti_pembayaran" required>
+                                <button type="submit" id="btnSubmit" class="btn btn-primary"><i class="fa fa-fw fa-upload"></i> Unggah</button>
+                            </div>
+                        </div>
+                    </form>
                 @endif
             </div>
         </div>            
@@ -108,6 +125,14 @@
                 document.getElementById('formLogout').submit();
             }
             (() => {
+                $('#input-userid').change(function(){
+                    let val = $('#input-userid').val();
+                    if(val == ''){
+                        $('#file-input').css('display', 'none');
+                    } else {
+                        $('#file-input').css('display', 'block');
+                    }
+                })
                 $('#inputFile').change(function(){
                     let filename = $('#inputFile')[0].files[0].name;
                     $('#filename').html(filename);

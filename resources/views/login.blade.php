@@ -1,14 +1,25 @@
 @extends('app.app')
 @section('content')
+    @push('css')
+        <style>
+            .backBtn {
+                color: #485094 !important;
+            }
+        </style>
+    @endpush
     <!-- Navbar -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-        <div class="col text-center navbar-brand-wrapper">
+        <div class="col-4">
+            <a href="{{ url('/') }}" class="backBtn"><i class="fa fa-arrow-left"></i> &nbsp;Back</a>
+        </div>
+        <div class="col-4 text-center navbar-brand-wrapper">
             <a class="navbar-brand" href="{{ url('/') }}">GEMA XX</a>
         </div>
     </nav>
     <!-- End of Navbar -->
     <div class="content">
         <div class="container">
+            @include('templates.feedback')
             <div class="col-12 col-sm-8 col-md-4 offset-md-4 offset-sm-2 wrapper text-center login">
                 <h2>Sign In</h2>
                 <img src="{{ asset('assets/app') }}/images/login.svg" width="80">

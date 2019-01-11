@@ -1,6 +1,18 @@
+@php
+  $user = \Auth::user();
+@endphp
 <!DOCTYPE html>
 <html>
   <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131760994-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'UA-131760994-1');
+    </script>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>GEMA XX 2019 | Urban Scouting & Orienteering Games</title>
@@ -66,11 +78,8 @@
             >
           </li>
           <li class="nav-item"><a class="nav-link" href="#partners">Partners</a></li>
-          <li class="nav-item"><button class="btn btnPrimary" data-toggle="modal" data-target="#registrationForm">Registrasi</button></li>
-          @php
-            $user = \Auth::user();
-          @endphp
           @if(empty($user))
+          <li class="nav-item"><button class="btn btnPrimary" data-toggle="modal" data-target="#registrationForm">Registrasi</button></li>
           <li class="nav-item"><a class="nav-link" href="{{ url('login') }}">Login</a></li>
           @else
           <li class="nav-item"><a class="nav-link" href="{{ url('d') }}">Dashboard</a></li>
@@ -93,11 +102,11 @@
             data-slide-to="0"
             class="active"
           ></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          <!-- <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
         </ol>
         <div class="carousel-inner">
-          <div class="carousel-item active">
+          <!-- <div class="carousel-item active">
             <div class="carousel-content">
                 <div class="container">
                     <div class="row">
@@ -110,7 +119,6 @@
                                 <i>Prepare for millenial movement</i>
                             </p>
                             <br>
-                            <!-- <a class="btnPrimary" href="#">View More</a> -->
                         </div>
                         <div class="col text-right map">
                             <img id="map" src="{{ asset('assets/welcome') }}/images/friends.svg">
@@ -119,8 +127,8 @@
                     </div>
                 </div>
             </div>
-          </div>
-          <div class="carousel-item">
+          </div> -->
+          <div class="carousel-item active">
             <div class="carousel-content">
                 <div class="container">
                     <div class="row">
@@ -143,7 +151,7 @@
                 </div>
             </div>
           </div>
-          <div class="carousel-item">
+          <!-- <div class="carousel-item">
             <div class="carousel-content">
                 <div class="container">
                     <div class="row">
@@ -156,7 +164,6 @@
                                 <i>Prepare for millenial movement</i>
                             </p>
                             <br>
-                            <!-- <a class="btnPrimary" href="#">View More</a> -->
                         </div>
                         <div class="col text-right map">
                             <img id="map" src="{{ asset('assets/welcome') }}/images/winners.svg">
@@ -236,8 +243,8 @@
         <div class="container">
             <div class="col-12 juknis-btn text-center">
               <p>Untuk melihat petunjuk teknis GEMA XX 2019, silahkan unduh file PDF dengan menekan tombol dibawah.</p>
-              <a href="{{ asset('assets/welcome') }}/docs/Juknis&Undangan SD.pdf" target="_blank" class="btn btnPrimary" download>Download Juknis SD/MA</a>
-              <a href="{{ asset('assets/welcome') }}/docs/Juknis&Undangan SMP/SMA.pdf" target="_blank" class="btn btnPrimary" download>Download Juknis SMP/SMA</a>
+              <a href="{{ asset('assets/welcome') }}/docs/Juknis&Undangan SD.pdf" target="_blank" id="juknisSD" class="btn btnPrimary" download>Download Juknis SD/MA</a>
+              <a href="{{ asset('assets/welcome') }}/docs/Juknis&Undangan SMP/SMA.pdf" target="_blank" id="juknisSMP" class="btn btnPrimary" download>Download Juknis SMP/SMA</a>
             </div>
         </div>
       </section>

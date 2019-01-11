@@ -204,12 +204,21 @@ a.navbar-brand {
 .hide {
     display: none;
 }
-.box-warning {
-    border: 1px solid #FFC107;
+.box {
     border-radius: 6px;
     padding: .5em 2em;
     display: inline-block;
+}
+.box-success {
+    border: 1px solid #6CCE42;
+    color: #6CCE42 !important;
+}
+.box-warning {
+    border: 1px solid #FFC107;
     color: #FFC107 !important;
+}
+.divider-sidebar {
+    border-top: 1px solid rgba(255,255,255, .1) !important;
 }
 @media screen and (max-width: 650px){
     .auth-user-wrapper {
@@ -237,7 +246,7 @@ a.navbar-brand {
     }
 }
 @media screen and (max-width: 398px){
-    .box-warning {
+    .box {
         font-size: .9em;
     }
 }
