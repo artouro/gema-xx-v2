@@ -159,6 +159,9 @@ a, a:hover {
     border-radius: 7px;
     padding: .5em 1em; */
 }
+.partner-cell {
+    margin-bottom: 2em; 
+}
 #registration {
     height: 540px;
     background: url('../images/Regis-Page.gif');
@@ -314,7 +317,7 @@ footer {
     }
     .partner-cell { width: 50%; }
     .partner-cell img {
-        width: 100%;
+        max-width: 100%;
     }
     #registration {
         background-position: 0;

@@ -201,8 +201,17 @@
           </div>
           <div class="container">
               <div class="row">
-                  <div class="col-md-6 col-lg-4 partner-cell">
+                  <div class="col-md-6 col-lg-4 partner-cell text-center">
                       <img src="{{ asset('assets/welcome') }}/images/partners/boyman-black.png" alt="Boyman Ragam Latih Pramuka">
+                  </div>
+                  <div class="col-md-6 col-lg-4 partner-cell text-center">
+                      <img src="{{ asset('assets/welcome') }}/images/partners/kwarda.png" alt="Kwarda Provinsi Jawa Barat" width="100">
+                  </div>
+                  <div class="col-md-6 col-lg-4 partner-cell text-center">
+                      <img src="{{ asset('assets/welcome') }}/images/partners/tectona.png" alt="Tectona : Outdoor, Cloth, Bag" width="200">
+                  </div>
+                  <div class="col-md-6 col-lg-4 partner-cell text-center">
+                      <img src="{{ asset('assets/welcome') }}/images/partners/binasehat.png" alt="Rumah Sakit Bina Sehat Bandung" width="150">
                   </div>
               </div>
           </div>
@@ -243,7 +252,7 @@
             <div class="col-12 juknis-btn text-center">
               <p>Untuk melihat petunjuk teknis GEMA XX 2019, silahkan unduh file PDF dengan menekan tombol dibawah.</p>
               <a href="{{ asset('assets/welcome') }}/docs/Juknis&Undangan SD.pdf" target="_blank" id="juknisSD" class="btn btnPrimary" download>Download Juknis SD/MA</a>
-              <a href="{{ asset('assets/welcome') }}/docs/Juknis&Undangan SMP/SMA.pdf" target="_blank" id="juknisSMP" class="btn btnPrimary" download>Download Juknis SMP/SMA</a>
+              <a href="{{ asset('assets/welcome') }}/docs/Juknis&Undangan SMP-SMA.pdf" target="_blank" id="juknisSMP" class="btn btnPrimary" download>Download Juknis SMP/SMA</a>
             </div>
         </div>
       </section>
@@ -257,6 +266,17 @@
             <div class="col-12 juknis-btn text-center">
               <p>Untuk daftar menjadi peserta perlombaan LKBB GEMA XX 2019, silahkan unduh formulir LKBB dengan menekan tombol dibawah.</p>
               <a href="{{ asset('assets/welcome') }}/docs/FormulirLKBB.pdf" target="_blank" id="formLkbb" class="btn btnPrimary" download>Download Formulir LKBB</a>
+            </div>
+        </div>
+      </section>
+      <section id="events" class="section">
+        <div class="col-12 text-center section-title">
+            <p>Twibbon</p>
+        </div>
+        <div class="container">
+            <div class="col-12 juknis-btn text-center">
+              <p>Silahkan unduh Twibbon GEMA XX 2019 dengan menekan tombol dibawah.</p>
+              <a href="{{ asset('assets/welcome') }}/images/Twibbon GEMA XX.png" target="_blank" id="twibbon" class="btn btnPrimary" download>Download Twibbon GEMA XX</a>
             </div>
         </div>
       </section>
