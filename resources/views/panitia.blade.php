@@ -8,6 +8,9 @@
             div.table-responsive {
                 margin-bottom: 1em;
             }
+            div.table-responsive tr td {
+                vertical-align: middle;
+            }
             thead {
                 background-color: #242849;
                 color: #A4AADB;
@@ -38,7 +41,7 @@
                         <thead class="thead-dark">
                             <tr>
                                 <td>No.</td>
-                                <td>UserID</td>
+                                <td>Email</td>
                                 <td>Nama</td>
                                 <td>Divisi</td>
                                 <td>Action</td>
@@ -52,10 +55,10 @@
                                 @foreach($panitia as $row)
                                     <tr>
                                         <td>{{ $i }}</td>
-                                        <td>{{ $row->userid }}</td>
+                                        <td>{{ $row->email }}</td>
                                         <td>{{ $row->nama }}</td>
                                         <td>{{ $row->pangkalan }}</td>
-                                        <td><a href="" class="btn btn-warning">Edit</a></td>
+                                        <td><a href="{{ url('d/form_panitia/' . $row->email) }}" class="btn btn-warning">Edit</a></td>
                                     </tr>
                                     @php 
                                         $i++;

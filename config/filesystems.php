@@ -57,7 +57,7 @@ return [
         
         'upload' => [
             'driver' => 'local',
-            'root' => storage_path('app/public/bukti_pembayaran'),
+            'root' => storage_path('app/public/uploads'),
             'visibility' => 'public',
         ],
 

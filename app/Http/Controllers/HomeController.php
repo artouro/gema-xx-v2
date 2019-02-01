@@ -29,17 +29,16 @@ class HomeController extends Controller
         $input = $request->all();
 
         //Email unique check;
-        $check = User::where('userid', $request->email_pinru)->first();
-        if($check) return redirect('/login')->with('error', 'Gagal : Email Pinru/Pinsa telah digunakan.');
+        $check = User::where('email', $request->email)->first();
+        if($check) return redirect('/login')->with('error', 'Gagal : Email telah digunakan.');
         //Level validation check
         if($request->level < 1 || $request->level > 5){
             return redirect('/')->with('error', 'Masukkan tingkat sesuai pilihan yang tersedia');
         }
-        $input['userid'] = $request->email_pinru;
         $input['password'] = bcrypt($request->password);
         $save = User::create($input);
 
-        if($save) return redirect('/login')->with('success', 'Registrasi berhasil. Silahkan login untuk melakukan konfirmasi pembayaran.');
+        if($save) return redirect('/login')->with('success', 'Registrasi berhasil. Silahkan login untuk melanjutkan.');
         else { return redirect('/')->with(); }
     }
 
@@ -65,34 +64,9 @@ class HomeController extends Controller
             return redirect('/d/registrant')->with('error', 'Konfirmasi pembayaran gagal.');
         }
     }
-    
-    public function panitia(){
-        $data['panitia'] = \App\User::where('level', 2)->get();
-        return view('panitia')->with($data);
-    }
-
-    public function add_panitia(){
-        return view('add_panitia');
-    }
-
-    public function store_panitia(Request $request){
-        $input = $request->all();
-        $input['userid'] = $request->email_pinru;
-        $input['level'] = 2;
-        $input['email_pinru'] = '-';
-        $input['email_pembina'] = '-';
-        $input['telp_pinru'] = '-';
-        $input['telp_pembina'] = '-';
-        $input['aktif'] = 1;
-        $input['password'] = bcrypt($request->password);
-
-        $save = \App\User::create($input);
-        if($save) return redirect('d/add_panitia')->with('success', 'Panitia berhasil ditambahkan.');
-        else return redirect('d/add_panitia')->with('error', 'Panitia gagal ditambahkan.');
-    }
 
     public function add_user(){
-        return view('add_user');
+        return view('form_user');
     }
 
     public function store_user(Request $request){
@@ -112,17 +86,21 @@ class HomeController extends Controller
         
         //Validate email pinru uniqueness ..
         $check = User::where('userid', $request->email_pinru)->first();
-        if($check) return redirect('/d/add_user')->with('error', 'Gagal : Email Pinru/Pinsa telah digunakan.');
+        if($check) return redirect('/d/form_user')->with('error', 'Gagal : Email Pinru/Pinsa telah digunakan.');
 
         // Check level value ..
         if($request->level < 1 || $request->level > 5){
-            return redirect('/d/add_user')->with('error', 'Masukkan tingkat sesuai pilihan yang tersedia');
+            return redirect('/d/form_user')->with('error', 'Masukkan tingkat sesuai pilihan yang tersedia');
         }
         $input['userid'] = $request->email_pinru;
         $input['password'] = bcrypt($request->password);
         $save = User::create($input);
 
-        if($save) return redirect('/d/add_user')->with('success', 'Registrasi peserta berhasil.');
-        else { return redirect('/d/add_user')->with('error', 'Registrasi peserta gagal.'); }
+        if($save) return redirect('/d/form_user')->with('success', 'Registrasi peserta berhasil.');
+        else { return redirect('/d/form_user')->with('error', 'Registrasi peserta gagal.'); }
+    }
+
+    public function show(){
+        return view('form_user');
     }
 }

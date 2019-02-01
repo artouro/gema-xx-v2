@@ -64,7 +64,6 @@
                 <p>
                     Untuk melakukan konfirmasi pembayaran, unggah foto/screenshot bukti transfer bank pada form yang tersedia dibawah.
                     <br>Setelah itu, tunggu konfirmasi dari pihak panitia.
-                    <br><br>Jika pembayaran anda telah dikonfirmasi oleh pihak panitia, anda dapat mengakses halaman Administrasi untuk memenuhi berkas-berkas administrasi.
                     <br><br>Ketentuan file : <br>1. Berformat gambar (jpg, png) <br>2. Ukuran file maksimal 1 Mb
                 </p>
                 <div class="col-12">
@@ -77,6 +76,10 @@
                     @if($user->aktif == 0 && $user->bukti_pembayaran == '')
                     <form method="post" id="formUpload" action="{{ url('d/konfirmasi/upload') }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
+                        <div class="form-group text-center">
+                            <label for="" class="col-form-label">Keterangan (opsional) : <br><span class="text-primary">Contoh : Transfer ke BCA a.n Budiman Suryadi</span></label><br>
+                            <textarea name="keterangan" cols="50" rows="2"></textarea>
+                        </div>
                         <div class="form-group text-center">
                             <label for="inputFile" class="text-center"><i class="fa fa-file"></i>&nbsp; Pilih File</label>
                             <input type="file" id="inputFile" name="bukti_pembayaran" required>

@@ -102,11 +102,11 @@
             data-slide-to="0"
             class="active"
           ></li>
-          <!-- <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol>
         <div class="carousel-inner">
-          <!-- <div class="carousel-item active">
+          <div class="carousel-item active">
             <div class="carousel-content">
                 <div class="container">
                     <div class="row">
@@ -127,8 +127,8 @@
                     </div>
                 </div>
             </div>
-          </div> -->
-          <div class="carousel-item active">
+          </div>
+          <div class="carousel-item">
             <div class="carousel-content">
                 <div class="container">
                     <div class="row">
@@ -141,7 +141,6 @@
                                 <i>Prepare for millenial movement</i>
                             </p>
                             <br>
-                            <!-- <a class="btnPrimary" href="#">View More</a> -->
                         </div>
                         <div class="col text-right map">
                             <img id="map" src="{{ asset('assets/welcome') }}/images/map-red.svg">
@@ -151,7 +150,7 @@
                 </div>
             </div>
           </div>
-          <!-- <div class="carousel-item">
+          <div class="carousel-item">
             <div class="carousel-content">
                 <div class="container">
                     <div class="row">
@@ -173,7 +172,7 @@
                 </div>
             </div>
           </div>
-        </div>
+        </div> 
         <a
           class="carousel-control-prev"
           href="#carouselExampleIndicators"
@@ -194,7 +193,7 @@
         </a>
       </div>
       </section>
-      <!-- End of Banner -->
+       <!-- End of Banner -->
       <!-- Sponsors -->
       <section id="partners" class="section">
           <div class="col-12 text-center section-title">
@@ -235,7 +234,7 @@
         </div>
       </section>
       <!-- End of Events -->
-      <!-- Events -->
+      <!--Juknis -->
       <section id="events" class="section">
         <div class="col-12 text-center section-title">
             <p>Petunjuk Teknis</p>
@@ -248,7 +247,20 @@
             </div>
         </div>
       </section>
-      <!-- End of Events -->
+      <!-- End of Juknis -->
+      <!--LKBB -->
+      <section id="events" class="section">
+        <div class="col-12 text-center section-title">
+            <p>Formulir LKBB</p>
+        </div>
+        <div class="container">
+            <div class="col-12 juknis-btn text-center">
+              <p>Untuk daftar menjadi peserta perlombaan LKBB GEMA XX 2019, silahkan unduh formulir LKBB dengan menekan tombol dibawah.</p>
+              <a href="{{ asset('assets/welcome') }}/docs/FormulirLKBB.pdf" target="_blank" id="formLkbb" class="btn btnPrimary" download>Download Formulir LKBB</a>
+            </div>
+        </div>
+      </section>
+      <!-- End of LKBB -->
       <!-- Guests -->
       <section id="guests" class="section">
           <div class="col-12 text-center section-title">
@@ -304,12 +316,12 @@
                   <form method="post" action="{{ url('/registration') }}">
                     {{ csrf_field() }}
                     <div class="form-group">
-                      <label class="col-form-label">Nama Regu</label>
-                      <input type="text" class="form-control" name="nama" placeholder="Contoh : Macan Tutul" required>
+                      <label class="col-form-label">Nama Lengkap</label>
+                      <input type="text" class="form-control" name="nama" placeholder="Contoh : Budiman Suryadi" required>
                     </div>
                     <div class="form-group">
-                      <input type="radio" name="gender" value="putra" required> Putra &nbsp;&nbsp;
-                      <input type="radio" name="gender" value="putri" required> Putri
+                      <label class="col-form-label">Email</label>
+                      <input type="text" class="form-control" name="email" placeholder="Contoh : emailcontoh@gmail.com" required>
                     </div>
                     <div class="form-group">
                       <label class="col-form-label">Nama Pangkalan</label>
@@ -321,32 +333,19 @@
                       <input type="radio" name="level" value="5" required> SMA
                     </div>
                     <div class="form-group">
-                      <label class="col-form-label">Email Pemimpin Regu / Sangga</label>
-                      <input type="text" class="form-control" name="email_pinru" placeholder="Contoh : emailpinru@gmail.com" required>
+                      <label class="col-form-label">Mengikuti LKBB ?</label>
+                      <br>
+                      <input type="radio" name="lkbb" value="1" required> Ya &nbsp;&nbsp;
+                      <input type="radio" name="lkbb" value="0" required> Tidak
                     </div>
                     <div class="form-group">
-                      <label class="col-form-label">Email Pembina Pendamping</label>
-                      <input type="text" class="form-control" name="email_pembina" placeholder="Contoh : emailbindamping@gmail.com" required>
-                    </div>
-                    <div class="form-group">
-                      <label class="col-form-label">No. Telepon Pemimpin Regu / Sangga</label>
-                      <input type="text" class="form-control" name="telp_pinru" placeholder="Contoh : 081123456789" required>
-                    </div>
-                    <div class="form-group">
-                      <label class="col-form-label">No. Telepon Pembina Pendamping</label>
-                      <input type="text" class="form-control" name="telp_pembina" placeholder="Contoh : 081123456789" required>
+                      <label for="telp" class="col-form-label">Telepon</label>
+                      <input id="telp" type="text" name="telp" class="form-control" required="required" placeholder="Contoh : 081123456789">
                     </div>
                     <div class="form-group">
                       <label class="col-form-label">Kata Sandi</label>
-                      <input type="password" id="pass1" class="form-control" name="password" required>
+                      <input type="password" id="pass1" class="form-control" name="password" placeholder="..." required>
                     </div>
-                    <!-- <div class="form-group">
-                      <label class="col-form-label">Konfirmasi Kata Sandi</label>
-                       <input type="password" class="form-control" id="pass2" required>
-                      <small id="pass-equal" class="text-success">Kata sandi anda sesuai</small>
-                      <br>
-                      <small id="pass-not-equal" class="text-danger">Kata sandi anda tidak sama</small>
-                    </div> -->
                     <div class="modal-footer">
                       <button type="submit" class="btn btn-primary">Submit</button>
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>

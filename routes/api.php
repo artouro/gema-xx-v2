@@ -17,9 +17,20 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::get('get_client', ['middleware' => 'cors', function(){
-//     return 'Hello Client!';
-// }]);
+Route::get('get_materi/{tingkat}', ['middleware' => 'cors', function($tingkat){
+    $data = \App\Matalomba::where('tingkat', $tingkat)->get();
+    return $data;
+}]);
+Route::get('get_materi/{tingkat}/{nama}', ['middleware' => 'cors', function($tingkat, $nama){
+    $target = \App\Matalomba::where('tingkat', $tingkat)->where('nama_matalomba', $nama)->first();
+    $data = \App\Soal::select('id_soal', 'id_matalomba', 'soal', 'gambar')->where('id_matalomba', $target->id_matalomba)->get(); 
+    return $data;
+}]);
+Route::get('get_materi/{tingkat}/{nama}/{id_soal}', ['middleware' => 'cors', function($tingkat, $nama, $id_soal){
+    $target = \App\Matalomba::where('tingkat', $tingkat)->where('nama_matalomba', $nama)->first();
+    $data = \App\Opsi::where('id_soal', $id_soal)->get(); 
+    return $data;
+}]);
 
 // Route::post('post_client', ['middleware' => 'cors', function(){
 //     return '';

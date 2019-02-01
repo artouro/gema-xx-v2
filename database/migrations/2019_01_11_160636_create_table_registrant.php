@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableMatalomba extends Migration
+class CreateTableRegistrant extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateTableMatalomba extends Migration
      */
     public function up()
     {
-        Schema::create('t_matalomba', function(Blueprint $table){
-            $table->increments('id_matalomba', 10);
-            $table->string('nama_matalomba', 100);
-            $table->string('tingkat', 10);
-            $table->string('tipe', 10);
+        Schema::create('t_registrant', function (Blueprint $table) {
+            $table->increments('id_registrant');
+            $table->string('nama_regu');
+            $table->string('email');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateTableMatalomba extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('t_matalomba');
+        Schema::dropIfExists('t_registrant');
     }
 }

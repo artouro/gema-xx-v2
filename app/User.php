@@ -16,22 +16,17 @@ class User extends Authenticatable
      * @var array
      */
     protected $table = 't_users';
-    public $primaryKey = 'userid';
+    public $primaryKey = 'email';
     public $incrementing = false;
     protected $fillable = [
-        'userid', 
+        'email', 
         'password',
-        'gender',
         'level',
         'nama',
         'pangkalan',
-        'email_pinru', 
-        'email_pembina', 
-        'telp_pinru', 
-        'telp_pembina',
-        'no_peserta',
-        'aktif',
-        'bukti_pembayaran'
+        'lkbb',
+        'form_lkbb',
+        'telp'
     ];
 
     /**
@@ -42,4 +37,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function payment(){
+        return $this->hasMany('App\Pembayaran', 'email', 'email');
+    }
 }

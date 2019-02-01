@@ -27,11 +27,11 @@
                     Silahkan <i>sign in</i> untuk melanjutkan ke <span>GEMA XX</span>
                     <br>
                 </p>
-                <p class="text-left login-note"><small>Note: <br>Gunakan email pemimpin regu/sangga yang didaftarkan <br>sebagai UserID</small></p>
+                <!-- <p class="text-left login-note"></p> -->
                 <form method="post" action="{{ route('login') }}">
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <input type="text" name="userid" class="form-control" placeholder="UserID">
+                        <input type="text" name="email" class="form-control" placeholder="Email">
                     </div>
                     <div class="form-group">
                         <input type="password" name="password" class="form-control" placeholder="Password">

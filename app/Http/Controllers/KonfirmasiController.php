@@ -22,19 +22,21 @@ class KonfirmasiController extends Controller
         $this->validate($request, $rules, $messages);
 
         if($request->hasFile('bukti_pembayaran') && $request->file('bukti_pembayaran')->isValid()){
-            $userid = \Auth::user()->userid;
+            $email = \Auth::user()->email;
             $nama = \Auth::user()->nama;
             $pangkalan = \Auth::user()->pangkalan;
             $time = strtotime(now());
 
             $filename =  $pangkalan . "_" . $nama . "-" . $time . "." . $request->file('bukti_pembayaran')->getClientOriginalExtension();
-    		$save = $request->file('bukti_pembayaran')->storeAs('', $filename);
+    		$save = $request->file('bukti_pembayaran')->storeAs('bukti_pembayaran', $filename);
             
+            $input['email'] = $email;
             $input['bukti_pembayaran'] = $filename;
+            $input['keterangan'] = $request->keterangan;
             
-            $goingToUpdate = \App\User::where('userid', $userid)->first()->update($input);
+            $save = \App\Pembayaran::create($input);
             
-            if($goingToUpdate) return redirect('/d/konfirmasi')->with('success', 'Bukti pembayaran berhasil diunggah.');
+            if($save) return redirect('/d/konfirmasi')->with('success', 'Bukti pembayaran berhasil diunggah.');
             else return redirect('/d/konfirmasi')->with('error', 'Bukti pembayaran gagal diunggah.');
         }
         
@@ -71,6 +73,20 @@ class KonfirmasiController extends Controller
             if($goingToUpdate) return redirect('/d/konfirmasi')->with('success', 'Bukti pembayaran berhasil diunggah.');
             else return redirect('/d/konfirmasi')->with('error', 'Bukti pembayaran gagal diunggah.');
         }
-        
+    }
+
+    public function konfirmasi($id){
+        $target = \App\User::where('id', $id)->first();
+        $data = \App\Pembayaran::where('email', $target->email)->get();
+        $input = [
+            'status' => 1
+        ];
+        $count = 0;
+        foreach($data as $row){
+            $confirm = $row->update($input);
+            if($confirm) $count += 1;
+        }
+        if($count == count($data)) return redirect('d/g/' . $id)->with('success', 'Konfirmasi pembayaran berhasil.');
+        else return redirect('d/g/' . $id)->with('error', 'Konfirmasi pembayaran gagal.');
     }
 }

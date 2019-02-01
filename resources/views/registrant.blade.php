@@ -34,46 +34,39 @@
                 </div>
                 <div class="button-list">
                     <ul>
-                        <li><button class="btn btn-info" data-target="#table-sdputra" data-toggle="collapse">SD Putra</button></li>
-                        <li><button class="btn btn-info" data-target="#table-sdputri" data-toggle="collapse">SD Putri</button></li>
-                        <li><button class="btn btn-info" data-target="#table-smpputra" data-toggle="collapse">SMP Putra</button></li>
-                        <li><button class="btn btn-info" data-target="#table-smpputri" data-toggle="collapse">SMP Putri</button></li>
-                        <li><button class="btn btn-info" data-target="#table-smaputra" data-toggle="collapse">SMA Putra</button></li>
-                        <li><button class="btn btn-info" data-target="#table-smaputri" data-toggle="collapse">SMA Putri</button></li>
+                        <li><button class="btn btn-info" data-target="#table-sd" data-toggle="collapse">SD</button></li>
+                        <li><button class="btn btn-info" data-target="#table-smp" data-toggle="collapse">SMP</button></li>
+                        <li><button class="btn btn-info" data-target="#table-sma" data-toggle="collapse">SMA</button></li>
                     </ul>
                 </div>
-                <!-- Table Pendaftar SD Putra -->
-                <div class="table-responsive collapse" id="table-sdputra">
-                    <h4>SD Putra</h4>
+                <!-- Table Pendaftar SD -->
+                <div class="table-responsive collapse" id="table-sd">
+                    <h4>Pendaftar SD</h4>
                     <table class="table table-striped">
                         <thead class="thead-dark">
                             <tr>
                                 <td>No.</td>
-                                <td>Nama Regu</td>
+                                <td>Nama</td>
                                 <td>Pangkalan</td>
-                                <td>Email Pinru/Pinsa</td>
-                                <td>Email Bindamping</td>
-                                <td>Telepon Pinru/Pinsa</td>
-                                <td>Telepon Bindamping</td>
-                                <td>Status Pembayaran</td>
-                                <td>Aktif</td>
+                                <td>Email</td>
+                                <td>Telepon</td>
+                                <td>Pembayaran</td>
+                                <td>Status</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
                         <tbody>
-                            @if(count($sdputra) > 0)
+                            @if(count($sd) > 0)
                                 @php 
                                     $i = 1;
                                 @endphp
-                                @foreach($sdputra as $row)
+                                @foreach($sd as $row)
                                     <tr>
                                         <td>{{ $i }}</td>
                                         <td>{{ $row->nama }}</td>
                                         <td>{{ $row->pangkalan }}</td>
-                                        <td>{{ $row->email_pinru }}</td>
-                                        <td>{{ $row->email_pembina }}</td>
-                                        <td>{{ $row->telp_pinru }}</td>
-                                        <td>{{ $row->telp_pembina }}</td>
+                                        <td>{{ $row->email }}</td>
+                                        <td>{{ $row->telp }}</td>
                                         <td>
                                             @if($row->bukti_pembayaran == NULL)
                                                 Belum Bayar
@@ -83,9 +76,11 @@
                                         </td>
                                         <td>
                                             @if($row->aktif == 1)
-                                                Aktif
+                                                Sudah Dikonfirmasi
+                                            @elseif($row->aktif == 0 && $row->bukti_pembayaran != NULL)
+                                                Belum Dikonfirmasi
                                             @else
-                                                Tidak Aktif
+                                                -
                                             @endif
                                         </td>
                                         <td>
@@ -104,40 +99,96 @@
                         </tbody>
                     </table>
                 </div>
-                <!-- End of Table Pendaftar SD Putra -->
-
-                <!-- Table Pendaftar SD Putri -->
-                <div class="table-responsive collapse" id="table-sdputri">
-                    <h4>SD Putri</h4>
+                <!-- End of Table Pendaftar SD -->
+                 <!-- Table Pendaftar SMP -->
+                 <div class="table-responsive collapse" id="table-smp">
+                    <h4>Pendaftar SMP</h4>
                     <table class="table table-striped">
                         <thead class="thead-dark">
                             <tr>
                                 <td>No.</td>
-                                <td>Nama Regu</td>
+                                <td>Nama</td>
                                 <td>Pangkalan</td>
-                                <td>Email Pinru/Pinsa</td>
-                                <td>Email Bindamping</td>
-                                <td>Telepon Pinru/Pinsa</td>
-                                <td>Telepon Bindamping</td>
-                                <td>Status Pembayaran</td>
-                                <td>Aktif</td>
+                                <td>Email</td>
+                                <td>Telepon</td>
+                                <td>Pembayaran</td>
+                                <td>Status</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
                         <tbody>
-                            @if(count($sdputri) > 0)
+                            @if(count($smp) > 0)
                                 @php 
                                     $i = 1;
                                 @endphp
-                                @foreach($sdputri as $row)
+                                @foreach($smp as $row)
                                     <tr>
                                         <td>{{ $i }}</td>
                                         <td>{{ $row->nama }}</td>
                                         <td>{{ $row->pangkalan }}</td>
-                                        <td>{{ $row->email_pinru }}</td>
-                                        <td>{{ $row->email_pembina }}</td>
-                                        <td>{{ $row->telp_pinru }}</td>
-                                        <td>{{ $row->telp_pembina }}</td>
+                                        <td>{{ $row->email }}</td>
+                                        <td>{{ $row->telp }}</td>
+                                        <td>
+                                            @if(empty($row->payment()->first()->bukti_pembayaran))
+                                                Belum Bayar
+                                            @else
+                                                Sudah Bayar
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($row->payment()->first()->status == 1)
+                                                Sudah Dikonfirmasi
+                                            @elseif($row->payment()->first()->status == 0 && $row->payment() != NULL)
+                                                Belum Dikonfirmasi
+                                            @else
+                                                -
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if(!empty($row->payment()->first()->bukti_pembayaran) && $row->aktif == 0)
+                                                <a href="{{ url('/d/g/' . $row->id) }}" class="btn btn-warning">More</a>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    @php 
+                                        $i++;
+                                    @endphp
+                                @endforeach
+                            @else
+                            <tr><td colspan="10" class="text-center">Data tidak ada.</td></tr>
+                            @endif
+                        </tbody>
+                    </table>
+                </div>
+                <!-- End of Table Pendaftar SMP -->
+                 <!-- Table Pendaftar SMA -->
+                 <div class="table-responsive collapse" id="table-sma">
+                    <h4>Pendaftar SMA</h4>
+                    <table class="table table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <td>No.</td>
+                                <td>Nama</td>
+                                <td>Pangkalan</td>
+                                <td>Email</td>
+                                <td>Telepon</td>
+                                <td>Pembayaran</td>
+                                <td>Status</td>
+                                <td>Action</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if(count($sd) > 0)
+                                @php 
+                                    $i = 1;
+                                @endphp
+                                @foreach($sma as $row)
+                                    <tr>
+                                        <td>{{ $i }}</td>
+                                        <td>{{ $row->nama }}</td>
+                                        <td>{{ $row->pangkalan }}</td>
+                                        <td>{{ $row->email }}</td>
+                                        <td>{{ $row->telp }}</td>
                                         <td>
                                             @if($row->bukti_pembayaran == NULL)
                                                 Belum Bayar
@@ -147,9 +198,11 @@
                                         </td>
                                         <td>
                                             @if($row->aktif == 1)
-                                                Aktif
+                                                Sudah Dikonfirmasi
+                                            @elseif($row->aktif == 0 && $row->bukti_pembayaran != NULL)
+                                                Belum Dikonfirmasi
                                             @else
-                                                Tidak Aktif
+                                                -
                                             @endif
                                         </td>
                                         <td>
@@ -168,263 +221,7 @@
                         </tbody>
                     </table>
                 </div>
-                <!-- End of Table Pendaftar SD Putri -->
-
-                <!-- Table Pendaftar SMP Putra -->
-                <div class="table-responsive collapse" id="table-smpputra">
-                    <h4>SMP Putra</h4>
-                    <table class="table table-striped">
-                        <thead class="thead-dark">
-                            <tr>
-                                <td>No.</td>
-                                <td>Nama Regu</td>
-                                <td>Pangkalan</td>
-                                <td>Email Pinru/Pinsa</td>
-                                <td>Email Bindamping</td>
-                                <td>Telepon Pinru/Pinsa</td>
-                                <td>Telepon Bindamping</td>
-                                <td>Status Pembayaran</td>
-                                <td>Aktif</td>
-                                <td>Action</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @if(count($smpputra) > 0)
-                                @php 
-                                    $i = 1;
-                                @endphp
-                                @foreach($smpputra as $row)
-                                    <tr>
-                                        <td>{{ $i }}</td>
-                                        <td>{{ $row->nama }}</td>
-                                        <td>{{ $row->pangkalan }}</td>
-                                        <td>{{ $row->email_pinru }}</td>
-                                        <td>{{ $row->email_pembina }}</td>
-                                        <td>{{ $row->telp_pinru }}</td>
-                                        <td>{{ $row->telp_pembina }}</td>
-                                        <td>
-                                            @if($row->bukti_pembayaran == NULL)
-                                                Belum Bayar
-                                            @else
-                                                Sudah Bayar
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if($row->aktif == 1)
-                                                Aktif
-                                            @else
-                                                Tidak Aktif
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if($row->bukti_pembayaran != NULL && $row->aktif == 0)
-                                                <a href="{{ url('/d/registrant/konfirmasi/' . $row->userid) }}" class="btn btn-warning">Konfirmasi</a>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                    @php 
-                                        $i++;
-                                    @endphp
-                                @endforeach
-                            @else
-                            <tr><td colspan="10" class="text-center">Data tidak ada.</td></tr>
-                            @endif
-                        </tbody>
-                    </table>
-                </div>
-                <!-- End of Table Pendaftar SMP Putra -->
-
-                <!-- Table Pendaftar SMP Putri -->
-                <div class="table-responsive collapse" id="table-smpputri">
-                    <h4>SMP Putri</h4>
-                    <table class="table table-striped">
-                        <thead class="thead-dark">
-                            <tr>
-                                <td>No.</td>
-                                <td>Nama Regu</td>
-                                <td>Pangkalan</td>
-                                <td>Email Pinru/Pinsa</td>
-                                <td>Email Bindamping</td>
-                                <td>Telepon Pinru/Pinsa</td>
-                                <td>Telepon Bindamping</td>
-                                <td>Status Pembayaran</td>
-                                <td>Aktif</td>
-                                <td>Action</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @if(count($smpputri) > 0)
-                                @php 
-                                    $i = 1;
-                                @endphp
-                                @foreach($smpputri as $row)
-                                    <tr>
-                                        <td>{{ $i }}</td>
-                                        <td>{{ $row->nama }}</td>
-                                        <td>{{ $row->pangkalan }}</td>
-                                        <td>{{ $row->email_pinru }}</td>
-                                        <td>{{ $row->email_pembina }}</td>
-                                        <td>{{ $row->telp_pinru }}</td>
-                                        <td>{{ $row->telp_pembina }}</td>
-                                        <td>
-                                            @if($row->bukti_pembayaran == NULL)
-                                                Belum Bayar
-                                            @else
-                                                Sudah Bayar
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if($row->aktif == 1)
-                                                Aktif
-                                            @else
-                                                Tidak Aktif
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if($row->bukti_pembayaran != NULL && $row->aktif == 0)
-                                                <a href="{{ url('/d/registrant/konfirmasi/' . $row->userid) }}" class="btn btn-warning">Konfirmasi</a>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                    @php 
-                                        $i++;
-                                    @endphp
-                                @endforeach
-                            @else
-                            <tr><td colspan="10" class="text-center">Data tidak ada.</td></tr>
-                            @endif
-                        </tbody>
-                    </table>
-                </div>
-                <!-- End of Table Pendaftar SMP Putri -->
-
-                <!-- Table Pendaftar SMA Putra -->
-                <div class="table-responsive collapse" id="table-smaputra">
-                    <h4>SMA Putra</h4>
-                    <table class="table table-striped">
-                        <thead class="thead-dark">
-                            <tr>
-                                <td>No.</td>
-                                <td>Nama Regu</td>
-                                <td>Pangkalan</td>
-                                <td>Email Pinru/Pinsa</td>
-                                <td>Email Bindamping</td>
-                                <td>Telepon Pinru/Pinsa</td>
-                                <td>Telepon Bindamping</td>
-                                <td>Status Pembayaran</td>
-                                <td>Aktif</td>
-                                <td>Action</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @if(count($smaputra) > 0)
-                                @php 
-                                    $i = 1;
-                                @endphp
-                                @foreach($smaputra as $row)
-                                    <tr>
-                                        <td>{{ $i }}</td>
-                                        <td>{{ $row->nama }}</td>
-                                        <td>{{ $row->pangkalan }}</td>
-                                        <td>{{ $row->email_pinru }}</td>
-                                        <td>{{ $row->email_pembina }}</td>
-                                        <td>{{ $row->telp_pinru }}</td>
-                                        <td>{{ $row->telp_pembina }}</td>
-                                        <td>
-                                            @if($row->bukti_pembayaran == NULL)
-                                                Belum Bayar
-                                            @else
-                                                Sudah Bayar
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if($row->aktif == 1)
-                                                Aktif
-                                            @else
-                                                Tidak Aktif
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if($row->bukti_pembayaran != NULL && $row->aktif == 0)
-                                                <a href="{{ url('/d/registrant/konfirmasi/' . $row->userid) }}" class="btn btn-warning">Konfirmasi</a>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                    @php 
-                                        $i++;
-                                    @endphp
-                                @endforeach
-                            @else
-                            <tr><td colspan="10" class="text-center">Data tidak ada.</td></tr>
-                            @endif
-                        </tbody>
-                    </table>
-                </div>
-                <!-- End of Table Pendaftar SMA Putra -->
-
-                <!-- Table Pendaftar SMA Putri -->
-                <div class="table-responsive collapse" id="table-smaputri">
-                    <h4>SMA Putri</h4>
-                    <table class="table table-striped">
-                        <thead class="thead-dark">
-                            <tr>
-                                <td>No.</td>
-                                <td>Nama Regu</td>
-                                <td>Pangkalan</td>
-                                <td>Email Pinru/Pinsa</td>
-                                <td>Email Bindamping</td>
-                                <td>Telepon Pinru/Pinsa</td>
-                                <td>Telepon Bindamping</td>
-                                <td>Status Pembayaran</td>
-                                <td>Aktif</td>
-                                <td>Action</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @if(count($smaputri) > 0)
-                                @php 
-                                    $i = 1;
-                                @endphp
-                                @foreach($smaputri as $row)
-                                    <tr>
-                                        <td>{{ $i }}</td>
-                                        <td>{{ $row->nama }}</td>
-                                        <td>{{ $row->pangkalan }}</td>
-                                        <td>{{ $row->email_pinru }}</td>
-                                        <td>{{ $row->email_pembina }}</td>
-                                        <td>{{ $row->telp_pinru }}</td>
-                                        <td>{{ $row->telp_pembina }}</td>
-                                        <td>
-                                            @if($row->bukti_pembayaran == NULL)
-                                                Belum Bayar
-                                            @else
-                                                Sudah Bayar
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if($row->aktif == 1)
-                                                Aktif
-                                            @else
-                                                Tidak Aktif
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if($row->bukti_pembayaran != NULL && $row->aktif == 0)
-                                                <a href="{{ url('/d/registrant/konfirmasi/' . $row->userid) }}" class="btn btn-warning">Konfirmasi</a>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                    @php 
-                                        $i++;
-                                    @endphp
-                                @endforeach
-                            @else
-                            <tr><td colspan="10" class="text-center">Data tidak ada.</td></tr>
-                            @endif
-                        </tbody>
-                    </table>
-                </div>
-                <!-- End of Table Pendaftar SMA Putri -->
+                <!-- End of Table Pendaftar SMA -->
             </div>
         </div>            
     </div>

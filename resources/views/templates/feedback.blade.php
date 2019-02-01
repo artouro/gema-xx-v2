@@ -10,7 +10,7 @@
 @endif
 
 @if(session('error'))
-	<div class="col-lg-10 col-md-12 offset-lg-1">
+	<div class="col-lg-10 col-md-12 offset-lg-1" style="padding-left:0; padding-right:0">
 		<div class="alert alert-danger">
 		  <button type="button" style="transform:translateY(-3px);" class="close pull-right" data-dismiss="alert" aria-label="Close">
 		    <span aria-hidden="true">&times;</span>

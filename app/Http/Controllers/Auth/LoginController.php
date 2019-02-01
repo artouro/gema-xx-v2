@@ -36,10 +36,10 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-    public function username(){
-        return 'userid';
-    }
     public function showLoginForm(){
         return view('login');
+    }
+    protected function getFailedLoginMessage(){
+        return 'Email/Password salah';
     }
 }

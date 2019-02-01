@@ -220,6 +220,15 @@ a.navbar-brand {
 .divider-sidebar {
     border-top: 1px solid rgba(255,255,255, .1) !important;
 }
+.button-row {
+    padding-left: 0 !important;
+    margin-bottom: 1em;
+}
+.button-row a i {
+    font-size: .85em;
+    transform: translateY(-1px);
+}
+
 @media screen and (max-width: 650px){
     .auth-user-wrapper {
         text-align: right !important;
