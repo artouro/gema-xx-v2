@@ -40,6 +40,6 @@ class CreateTableTSoal2 extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_t_soal2');
+        Schema::dropIfExists('t_soal2');
     }
 }
