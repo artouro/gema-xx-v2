@@ -136,12 +136,12 @@
                                             @endif
                                         </td>
                                         <td>
-                                            @if($row->payment()->first()->status == 1)
+                                            @if(empty($row->payment()->first()))
+                                            -
+                                            @elseif($row->payment()->first()->status == 1 )
                                                 Sudah Dikonfirmasi
                                             @elseif($row->payment()->first()->status == 0 && $row->payment() != NULL)
                                                 Belum Dikonfirmasi
-                                            @else
-                                                -
                                             @endif
                                         </td>
                                         <td>

@@ -39,7 +39,20 @@
                                         <tr>
                                             <td><a href="{{ url('d/k/' . $row->id_matalomba) }}">{{ $row->nama_matalomba }}</a></td>
                                             <td>{{ $row->tipe }}</td>
+                                            @if($row->tipe == 'Pilihan Ganda')
                                             <td>{{ count($row->jumlahSoal) }} Soal</td>
+                                            @elseif($row->tipe == 'Kalimat' || $row->tipe == 'Kompasis')
+                                                @php 
+                                                    $res = $row->kalimat()->first();
+                                                    $count = 0;
+                                                    for($i = 1; $i <= 10; $i++){
+                                                        if(!empty($res->{'kata_' . $i})){
+                                                            $count += 1;
+                                                        }
+                                                    }
+                                                @endphp
+                                            <td>{{ $count }} {{ $row->tipe === 'Kalimat' ? 'kata' : 'titik bidik' }}</td>
+                                            @endif
                                             <td><a href="{{ url('d/k/' . $row->id_matalomba) . '/e' }}" class="btn btn-warning">Edit</a>
                                             <a href="{{ url('d/k/' . $row->id_matalomba) . '/delete' }}" class="btn btn-danger">Delete</a></td>
                                         </tr>
@@ -72,19 +85,18 @@
                                             <td>{{ $row->tipe }}</td>
                                             @if($row->tipe == 'Pilihan Ganda')
                                             <td>{{ count($row->jumlahSoal) }} Soal</td>
-                                            @elseif($row->tipe == 'Kalimat')
+                                            @elseif($row->tipe == 'Kalimat' || $row->tipe == 'Kompasis')
                                                 @php 
                                                     $res = $row->kalimat()->first();
                                                     $count = 0;
                                                     for($i = 1; $i <= 10; $i++){
-                                                        if(empty($res->{'kata' . $i})){
+                                                        if(!empty($res->{'kata_' . $i})){
                                                             $count += 1;
                                                         }
                                                     }
                                                 @endphp
-                                            <td>{{ $count }} kata</td>
+                                            <td>{{ $count }} {{ $row->tipe === 'Kalimat' ? 'kata' : 'titik bidik' }}</td>
                                             @endif
-                                            <td></td>
                                             <td><a href="{{ url('d/k/' . $row->id_matalomba . '/e') }}" class="btn btn-warning">Edit</a>
                                             <a href="{{ url('d/k/' . $row->id_matalomba . '/delete') }}" class="btn btn-danger">Delete</a></td>
                                         </tr>
@@ -115,8 +127,20 @@
                                         <tr>
                                             <td><a href="{{ url('d/k/' . $row->id_matalomba) }}">{{ $row->nama_matalomba }}</a></td>
                                             <td>{{ $row->tipe }}</td>
+                                            @if($row->tipe == 'Pilihan Ganda')
                                             <td>{{ count($row->jumlahSoal) }} Soal</td>
-                                            <td></td>
+                                            @elseif($row->tipe == 'Kalimat' || $row->tipe == 'Kompasis')
+                                                @php 
+                                                    $res = $row->kalimat()->first();
+                                                    $count = 0;
+                                                    for($i = 1; $i <= 10; $i++){
+                                                        if(!empty($res->{'kata_' . $i})){
+                                                            $count += 1;
+                                                        }
+                                                    }
+                                                @endphp
+                                            <td>{{ $count }} {{ $row->tipe === 'Kalimat' ? 'kata' : 'titik bidik' }}</td>
+                                            @endif
                                             <td><a href="{{ url('d/k/' . $row->id_matalomba . '/e') }}" class="btn btn-warning">Edit</a>
                                             <a href="{{ url('d/k/' . $row->id_matalomba . '/delete') }}" class="btn btn-danger">Delete</a></td>
                                         </tr>

@@ -24,6 +24,12 @@
     </ul>
     <hr class="divider-sidebar"> 
     <ul class="list-group">
+        <a href="{{ url('d/rekap') }}"><li class="list-group-item"><i class="fa fa-fw fa-book"></i> Rekapitulasi</li></a>
+        <a href="{{ url('d/rekap-detail') }}"><li class="list-group-item"><i class="fa fa-fw fa-book"></i> Kompetisi</li></a>
+        <a href="{{ url('d/medali') }}"><li class="list-group-item"><i class="fa fa-fw fa-book"></i> Perolehan Medali</li></a>
+    </ul>
+    <hr class="divider-sidebar"> 
+    <ul class="list-group">
         @if(@$user->level == 1 || @$user->level == 2)
             <a href="{{ url('d/registrant') }}"><li class="list-group-item"><i class="fa fa-fw fa-list-alt"></i> List Pendaftar</li></a>
             <a href="{{ url('d/form_registrant') }}"><li class="list-group-item"><i class="fa fa-fw fa-user-plus"></i> Registrasi Peserta</li></a>

@@ -19,7 +19,7 @@
                     <h3>{{ $title }} Panitia</h3>
                 </div>
                 <div class="col-12 col-sm-8 offset-sm-2 text-left">
-                <form method="post" action="{{ url('/d/add_panitia/register') }}">
+                <form method="post" action="{{ url('/d/form_panitia/register') }}">
                     {{ csrf_field() }}
                     <div class="form-group">
                       <label class="col-form-label">Nama</label>

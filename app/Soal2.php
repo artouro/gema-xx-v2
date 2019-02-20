@@ -20,7 +20,8 @@ class Soal2 extends Model
         'kata_7',
         'kata_8',
         'kata_9',
-        'kata_10'
+        'kata_10',
+        'gambar'
     ];
 
     public function matalomba(){

@@ -75,7 +75,7 @@
                 @php
                     $user = \Auth::user();
                 @endphp
-                    <form method="post" id="formUpload" action="{{ url('d/g/form_lkbb/upload') }}" enctype="multipart/form-data">
+                    <form method="post" id="formUpload" action="{{ url('d/form_lkbb/upload') }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="form-group text-center">
                             <div id="file-input">

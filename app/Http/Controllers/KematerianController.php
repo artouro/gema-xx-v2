@@ -50,4 +50,35 @@ class KematerianController extends Controller
         $data['result'] = \App\Matalomba::where('id_matalomba', $id)->first();
         return view('kematerian.soal.index')->with($data);
     }
+
+    public function handling(Request $request){
+        ini_set('max_execution_time', 300);
+        $res = json_decode($request->input()[0]);
+        $data = $res->pengerjaan;
+        $success = 0;
+        $exist = 0;
+        foreach($data as $row){
+            $check = \App\Pengerjaan::where('userid', $row->userid)
+                        ->where('id_matalomba', $row->id_matalomba)
+                        ->first();
+            if(empty($check)){
+                $arr = [
+                    'userid' => $row->userid, 
+                    'id_matalomba' => $row->id_matalomba,
+                    'waktu_pengerjaan' => $row->waktu_pengerjaan,
+                    'nilai' => $row->nilai, 
+                    'created_at' => $row->created_at, 
+                    'updated_at' => $row->updated_at,
+                ];
+                $save = \App\Pengerjaan::create($arr);
+                if($save) $success++;
+            } else {
+                $exist++;
+                continue;
+            }
+        }
+        return response()->json([
+            'message' => $success . ' data berhasil dikirim & ' . $exist . ' tidak dikirim.'
+        ]);    
+    }
 }

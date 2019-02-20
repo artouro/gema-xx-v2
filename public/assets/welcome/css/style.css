@@ -162,6 +162,8 @@ a, a:hover {
 .partner-cell {
     margin-bottom: 2em; 
 }
+.blob {
+}
 #registration {
     height: 540px;
     background: url('../images/Regis-Page.gif');

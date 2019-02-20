@@ -16,16 +16,16 @@ class CreateTableTSoal2 extends Migration
         Schema::create('t_soal2', function (Blueprint $table) {
             $table->increments('id_soal2');
             $table->integer('id_matalomba')->unsigned();
-            $table->string('kata_1');
-            $table->string('kata_2');
-            $table->string('kata_3');
-            $table->string('kata_4');
-            $table->string('kata_5');
-            $table->string('kata_6');
-            $table->string('kata_7');
-            $table->string('kata_8');
-            $table->string('kata_9');
-            $table->string('kata_10');
+            $table->string('kata_1')->nullable();
+            $table->string('kata_2')->nullable();
+            $table->string('kata_3')->nullable();
+            $table->string('kata_4')->nullable();
+            $table->string('kata_5')->nullable();
+            $table->string('kata_6')->nullable();
+            $table->string('kata_7')->nullable();
+            $table->string('kata_8')->nullable();
+            $table->string('kata_9')->nullable();
+            $table->string('kata_10')->nullable();
             $table->timestamps();
             $table->foreign('id_matalomba')
                   ->references('id_matalomba')

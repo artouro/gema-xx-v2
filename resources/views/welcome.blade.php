@@ -213,6 +213,9 @@
                   <div class="col-md-6 col-lg-4 partner-cell text-center">
                       <img src="{{ asset('assets/welcome') }}/images/partners/binasehat.png" alt="Rumah Sakit Bina Sehat Bandung" width="150">
                   </div>
+                  <div class="col-md-6 col-lg-4 partner-cell text-center">
+                      <img src="{{ asset('assets/welcome') }}/images/partners/SAE_Archery.png" alt="SAE Archery - The First Archery Programe For Character Transformation" width="150">
+                  </div>
               </div>
           </div>
       </section>
@@ -243,6 +246,20 @@
         </div>
       </section>
       <!-- End of Events -->
+      <!-- Hasil Juknis -->
+      <section id="events" class="section">
+        <div class="col-12 text-center section-title">
+            <p>Hasil Jumpa Teknis</p>
+        </div>
+        <div class="container">
+            <div class="col-12 juknis-btn text-center">
+              <p>Untuk melihat hasil jumpa teknis GEMA XX 2019, silahkan unduh file PDF dengan menekan tombol dibawah.</p>
+              <a href="{{ asset('assets/welcome') }}/docs/Hasil Jumpa Teknis GEMA XX 2019 SD.pdf" target="_blank" id="hasilJuknisSD" class="btn btnPrimary" download>SD/MI</a>
+              <a href="{{ asset('assets/welcome') }}/docs/Hasil Jumpa Teknis GEMA XX 2019 SMP-SMA.pdf" target="_blank" id="hasilJuknisSMP" class="btn btnPrimary" download>SMP/SMA</a>
+            </div>
+        </div>
+      </section>
+      <!-- End of Hasil Juknis -->
       <!--Juknis -->
       <section id="events" class="section">
         <div class="col-12 text-center section-title">
@@ -251,12 +268,23 @@
         <div class="container">
             <div class="col-12 juknis-btn text-center">
               <p>Untuk melihat petunjuk teknis GEMA XX 2019, silahkan unduh file PDF dengan menekan tombol dibawah.</p>
-              <a href="{{ asset('assets/welcome') }}/docs/Juknis&Undangan SD.pdf" target="_blank" id="juknisSD" class="btn btnPrimary" download>Download Juknis SD/MA</a>
+              <a href="{{ asset('assets/welcome') }}/docs/Juknis&Undangan SD.pdf" target="_blank" id="juknisSD" class="btn btnPrimary" download>Download Juknis SD/MI</a>
               <a href="{{ asset('assets/welcome') }}/docs/Juknis&Undangan SMP-SMA.pdf" target="_blank" id="juknisSMP" class="btn btnPrimary" download>Download Juknis SMP/SMA</a>
             </div>
         </div>
       </section>
       <!-- End of Juknis -->
+      <section id="events" class="section">
+        <div class="col-12 text-center section-title">
+            <p>Draft Materi Scout Journalist</p>
+        </div>
+        <div class="container">
+            <div class="col-12 juknis-btn text-center">
+              <p>Silahkan unduh draft materi Scout Journalist GEMA XX 2019 dengan menekan tombol dibawah.</p>
+              <a href="{{ asset('assets/welcome') }}/images/MateriScoutJurnalist.pdf" target="_blank" id="scoutjournalist" class="btn btnPrimary" download>Materi Scout Journalist GEMA XX</a>
+            </div>
+        </div>
+      </section>
       <!--LKBB -->
       <section id="events" class="section">
         <div class="col-12 text-center section-title">
@@ -276,7 +304,7 @@
         <div class="container">
             <div class="col-12 juknis-btn text-center">
               <p>Silahkan unduh Twibbon GEMA XX 2019 dengan menekan tombol dibawah.</p>
-              <a href="{{ asset('assets/welcome') }}/images/Twibbon GEMA XX.png" target="_blank" id="twibbon" class="btn btnPrimary" download>Download Twibbon GEMA XX</a>
+              <a href="{{ asset('assets/welcome') }}/images/Twibbon GEMA XX 2019.png" target="_blank" id="twibbon" class="btn btnPrimary" download>Download Twibbon GEMA XX</a>
             </div>
         </div>
       </section>
@@ -333,44 +361,7 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  <form method="post" action="{{ url('/registration') }}">
-                    {{ csrf_field() }}
-                    <div class="form-group">
-                      <label class="col-form-label">Nama Lengkap</label>
-                      <input type="text" class="form-control" name="nama" placeholder="Contoh : Budiman Suryadi" required>
-                    </div>
-                    <div class="form-group">
-                      <label class="col-form-label">Email</label>
-                      <input type="text" class="form-control" name="email" placeholder="Contoh : emailcontoh@gmail.com" required>
-                    </div>
-                    <div class="form-group">
-                      <label class="col-form-label">Nama Pangkalan</label>
-                      <input type="text" class="form-control" name="pangkalan" placeholder="Contoh : SMP Negeri 1 Baleendah" required>
-                    </div>
-                    <div class="form-group">
-                      <input type="radio" name="level" value="3" required> SD &nbsp;&nbsp;
-                      <input type="radio" name="level" value="4" required> SMP &nbsp;&nbsp;
-                      <input type="radio" name="level" value="5" required> SMA
-                    </div>
-                    <div class="form-group">
-                      <label class="col-form-label">Mengikuti LKBB ?</label>
-                      <br>
-                      <input type="radio" name="lkbb" value="1" required> Ya &nbsp;&nbsp;
-                      <input type="radio" name="lkbb" value="0" required> Tidak
-                    </div>
-                    <div class="form-group">
-                      <label for="telp" class="col-form-label">Telepon</label>
-                      <input id="telp" type="text" name="telp" class="form-control" required="required" placeholder="Contoh : 081123456789">
-                    </div>
-                    <div class="form-group">
-                      <label class="col-form-label">Kata Sandi</label>
-                      <input type="password" id="pass1" class="form-control" name="password" placeholder="..." required>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="submit" class="btn btn-primary">Submit</button>
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    </div>
-                  </form>
+                  Registrasi telah ditutup
                 </div>
               </div>
             </div>

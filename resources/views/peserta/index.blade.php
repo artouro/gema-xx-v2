@@ -186,7 +186,7 @@
                         </tr>
                         @foreach($bukti_pembayaran as $row)
                         <tr>
-                            <td><a href="{{ url('storage/uploads/bukti_pembayaran/' . $row->bukti_pembayaran) }}" target="_blank"><img src="{{ url('storage/uploads/bukti_pembayaran/' . $row->bukti_pembayaran) }}"></a></td>
+                            <td><a href="{{ url('../storage/app/public/uploads/bukti_pembayaran/' . $row->bukti_pembayaran) }}" target="_blank"><img src="{{ url('../storage/app/public/uploads/bukti_pembayaran/' . $row->bukti_pembayaran) }}"></a></td>
                             <td>{{ $row->keterangan != '' ? $row->keterangan : '-' }}</td>
                         </tr>
                         @endforeach
@@ -195,9 +195,9 @@
                         @if(!empty($user->form_lkbb) != NULL)
                         <hr>
                         <p>
-                            Form LKBB : <a class="btn btn-primary" href="{{ asset('storage/uploads/form_lkbb/' . $user->form_lkbb) }}" target="_blank">Form LKBB</a>
+                            Form LKBB : <a class="btn btn-primary" href="{{ asset('../storage/app/public/uploads/form_lkbb/' . $user->form_lkbb) }}" target="_blank">Form LKBB</a>
                             @if($user->form_lkbb && \Auth::user()->level >= 3)
-                                <a href="{{ url('d/g/form_lkbb') }}" class="btn btn-warning" id="btnUploadForm"> Ganti File</a>
+                                <a href="{{ url('d/form_lkbb') }}" class="btn btn-warning" id="btnUploadForm"> Ganti File</a>
                             @endif
                         </p>
                         @endif

@@ -28,7 +28,7 @@
                     <br>
                 </p>
                 <!-- <p class="text-left login-note"></p> -->
-                <form method="post" action="{{ route('login') }}">
+                <form method="post" action="{{ url('login') }}">
                     {{ csrf_field() }}
                     <div class="form-group">
                         <input type="text" name="email" class="form-control" placeholder="Email">

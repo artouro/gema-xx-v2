@@ -75,10 +75,26 @@
                             </div>
                         @endforeach
                     @elseif($result->tipe === 'Kalimat')
+                        <div class="col-12 gambar-soal">
+                            @if(@$result->kalimat->gambar)
+                                <a href="{{ asset('uploads/soal2/' . @$result->kalimat->gambar) }}" data-toggle="lightbox">
+                                    <img src="{{ asset('uploads/soal2/' . @$result->kalimat->gambar) }}" width="300">
+                                </a>
+                            @endif
+                        </div>
                         <table class="table table-striped">
                             @for($i = 1; $i <= 10; $i++)
                                 <tr>
                                     <td>Kata {{ $i }} </td>
+                                    <td>{{ @$result->kalimat->{'kata_' . $i} }}</td>
+                                </tr>
+                            @endfor
+                        </table>
+                    @elseif($result->tipe === 'Kompasis')
+                        <table class="table table-striped">
+                            @for($i = 1; $i <= 5; $i++)
+                                <tr>
+                                    <td>Titik Bidik ke-{{ $i }} </td>
                                     <td>{{ @$result->kalimat->{'kata_' . $i} }}</td>
                                 </tr>
                             @endfor
@@ -90,6 +106,10 @@
     </div>
     @push('js')
         <script type="text/javascript">
+            $(document).on("click", '[data-toggle="lightbox"]', function(event) {
+                event.preventDefault();
+                $(this).ekkoLightbox();
+            });
             function logout(){
                 document.getElementById('formLogout').submit();
             }

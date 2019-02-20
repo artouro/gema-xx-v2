@@ -16,21 +16,21 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-Route::get('get_materi/{tingkat}', ['middleware' => 'cors', function($tingkat){
-    $data = \App\Matalomba::where('tingkat', $tingkat)->get();
-    return $data;
-}]);
-Route::get('get_materi/{tingkat}/{nama}', ['middleware' => 'cors', function($tingkat, $nama){
-    $target = \App\Matalomba::where('tingkat', $tingkat)->where('nama_matalomba', $nama)->first();
-    $data = \App\Soal::select('id_soal', 'id_matalomba', 'soal', 'gambar')->where('id_matalomba', $target->id_matalomba)->get(); 
-    return $data;
-}]);
-Route::get('get_materi/{tingkat}/{nama}/{id_soal}', ['middleware' => 'cors', function($tingkat, $nama, $id_soal){
-    $target = \App\Matalomba::where('tingkat', $tingkat)->where('nama_matalomba', $nama)->first();
-    $data = \App\Opsi::where('id_soal', $id_soal)->get(); 
-    return $data;
-}]);
+// Route::get('matalomba', ['middleware' => 'cors', function(){
+//     $data = \App\Matalomba::all();
+//     return $data;
+// }]);
+// Route::get('matalomba/{id}', ['middleware' => 'cors', function($id){
+//     $data = \App\Soal::select('id_soal', 'id_matalomba', 'soal', 'gambar')->where('id_matalomba', $id)->get();
+//     return $data;
+// }]);
+// Route::get('opsi/{id}', ['middleware' => 'cors', function($id){
+//     $data = \App\Opsi::where('id_soal', $id)->get(); 
+//     return $data;
+// }]);
+Route::middleware(['cors'])->group(function(){
+    Route::post('/pengerjaan', 'KematerianController@handling');
+});
 
 // Route::post('post_client', ['middleware' => 'cors', function(){
 //     return '';

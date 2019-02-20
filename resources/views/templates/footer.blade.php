@@ -1,3 +1,4 @@
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.2.0/ekko-lightbox.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function(){
                 let isOpen = false;

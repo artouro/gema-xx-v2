@@ -32,6 +32,23 @@ class LoginController extends Controller
      *
      * @return void
      */
+    public function authenticate(){
+        $credentials = [
+            'userid' => $email,
+            'password' => $password
+        ];
+        if (Auth::guard('web')->attempt($credentials)) {
+            $details = Auth::guard('user')->user();
+            $user = $details['original'];
+            return $user;
+        } if (Auth::guard('peserta')->attempt($credentials)) {
+            $details = Auth::guard('admin')->user();
+            $user = $details['original'];
+            return $user;
+        } else {
+            return 'auth fail';
+        }
+    }
     public function __construct()
     {
         $this->middleware('guest')->except('logout');

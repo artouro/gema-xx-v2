@@ -76,8 +76,32 @@ class SoalController extends Controller
             else return redirect('/d/k/'.$id.'/add')->with('error', 'Data gagal ditambahkan.');
         } else if($request->tipe === 'Kalimat'){
             $input = $request->all();
-            $input['id_matalomba'] = $id;
+            
+            $rules = [  
+                'gambar' => 'mimes:jpeg,png,jpg|max:2048'
+            ];
+            
+            $this->validate($request, $rules);
 
+            $input['id_matalomba'] = $id;
+            $save = \App\Soal2::create($input);
+            $img = 0;
+            if($request->hasFile('gambar') && $request->file('gambar')->isValid()){
+                $id_soal = \App\Soal2::orderBy('created_at', 'desc')->first()->id_soal2;
+    
+                $filename =  $id_soal . "." . $request->file('gambar')->getClientOriginalExtension();
+                $request->file('gambar')->storeAs('soal2', $filename);
+                
+                $input2['gambar'] = $filename;
+                
+                $goingToUpdate = \App\Soal2::where('id_soal2', $id_soal)->first()->update($input2);
+                if($goingToUpdate) $img += 1;
+            }
+            if($img > 0) return redirect('/d/k/'.$id.'/add')->with('success', 'Data berhasil ditambahkan.');
+            else return redirect('/d/k/'.$id.'/add')->with('error', 'Data gagal ditambahkan.');
+        } else if($request->tipe == 'Kompasis'){
+            $input = $request->except(['_token', 'tipe']);
+            $input['id_matalomba'] = $id;
             $save = \App\Soal2::create($input);
             if($save) return redirect('/d/k/'.$id.'/add')->with('success', 'Data berhasil ditambahkan.');
             else return redirect('/d/k/'.$id.'/add')->with('error', 'Data gagal ditambahkan.');
@@ -128,6 +152,17 @@ class SoalController extends Controller
         } else if($request->tipe === 'Kalimat'){
             $input = $request->except(['_token', 'tipe']);
             $save = \App\Soal2::where('id_matalomba', $id)->update($input);
+            if($request->hasFile('gambar') && $request->file('gambar')->isValid()){
+                $id_soal = \App\Soal2::orderBy('created_at', 'desc')->first()->id_soal2;
+    
+                $filename =  $id_soal . "." . $request->file('gambar')->getClientOriginalExtension();
+                $request->file('gambar')->storeAs('soal', $filename);
+                
+                $input['gambar'] = $filename;
+                
+                $goingToUpdate = \App\Soal::where('id_soal2', $id_soal)->first()->update($input);
+            }
+
             if($save) return redirect('/d/k/'.$id)->with('success', 'Data berhasil diubah.');
             else return redirect('/d/k/'.$id)->with('error', 'Data gagal diubah.');
         }

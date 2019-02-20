@@ -55,7 +55,7 @@
                         </div>
                     </form>
                     @elseif($result->tipe == 'Kalimat')
-                        <form method="post" action="{{ $title == 'Add' ? url('d/k/'. @$result->id_matalomba .'/add/store') : url('d/k/' . @$result->id_matalomba . '/edit/update') }}">
+                        <form method="post" action="{{ $title == 'Add' ? url('d/k/'. @$result->id_matalomba .'/add/store') : url('d/k/' . @$result->id_matalomba . '/edit/update') }}" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <input type="hidden" name="tipe" value="{{ $result->tipe }}">
                             @php
@@ -64,7 +64,28 @@
                             @for($i = 1; $i <= 10; $i++)
                             <div class="form-group">
                                 <label for="kata_{{ $i }}" class="col-form-label">Kata ke- {{ $i }}</label>
-                                <input type="text" id="kata_{{ $i }}" name="kata_{{ $i }}" value="{{ $soal->{'kata_' . $i} }}" class="form-control" placeholder="Contoh : {{ $contoh[$i-1] }}" required>
+                                <input type="text" id="kata_{{ $i }}" name="kata_{{ $i }}" value="{{ @$soal->{'kata_' . $i} }}" class="form-control" placeholder="Contoh : {{ $contoh[$i-1] }}" required>
+                            </div>
+                            @endfor
+                            <div class="form-group">
+                                <label for="gambar" class="col-form-label">Gambar (opsional)</label>
+                                <input type="file" id="gambar" name="gambar" class="form-control-file">
+                            </div>
+                            <div class="text-center mt-5">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    @elseif($result->tipe == 'Kompasis')
+                    <form method="post" action="{{ $title == 'Add' ? url('d/k/'. @$result->id_matalomba .'/add/store') : url('d/k/' . @$result->id_matalomba . '/edit/update') }}" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="tipe" value="{{ $result->tipe }}">
+                            @php
+                                $contoh = ['40.5', '35.45', '30', '25', '55'];
+                            @endphp
+                            @for($i = 1; $i <= 5; $i++)
+                            <div class="form-group">
+                                <label for="kata_{{ $i }}" class="col-form-label">Titik Bidik ke- {{ $i }}</label>
+                                <input type="text" id="kata_{{ $i }}" name="kata_{{ $i }}" value="{{ @$soal->{'kata_' . $i} }}" class="form-control" placeholder="Contoh : {{ $contoh[$i-1] }}" required>
                             </div>
                             @endfor
                             <div class="text-center mt-5">

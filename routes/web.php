@@ -48,12 +48,14 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('d/konfirmasi/pembayaran/{id}', 'KonfirmasiController@konfirmasi');
 
     // Kematerian
-    Route::get('d/k', 'KematerianController@index');
-    Route::get('d/k/add', 'KematerianController@add');
-    Route::post('d/k/add/store', 'KematerianController@store');
-    Route::get('d/k/{id}/e', 'KematerianController@edit');
-    Route::post('d/k/{id}/e/update', 'KematerianController@update');
-    Route::get('d/k/{id}/delete', 'KematerianController@destroy');
+    Route::group(['middleware' => 'level'], function(){
+        Route::get('d/k', 'KematerianController@index');
+        Route::get('d/k/add', 'KematerianController@add');
+        Route::post('d/k/add/store', 'KematerianController@store');
+        Route::get('d/k/{id}/e', 'KematerianController@edit');
+        Route::post('d/k/{id}/e/update', 'KematerianController@update');
+        Route::get('d/k/{id}/delete', 'KematerianController@destroy');
+    });
 
     // Detail Kematerian atau Soal
     Route::get('d/k/{id}', 'KematerianController@show');
@@ -67,4 +69,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('d/k/{id}/edit/update', 'SoalController@update');
         //Delete Soal
         Route::get('d/k/soal/{id}/destroy', 'SoalController@destroy');
+
+    // Rekap
+    Route::get('d/rekap/', 'RekapController@index');
+    Route::get('d/rekap/{tingkat}', 'RekapController@index');
+    Route::get('d/rekap-detail/', 'RekapController@detail');
+    Route::get('d/rekap-detail/{tipe}', 'RekapController@detail');
 });

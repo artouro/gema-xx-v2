@@ -40,7 +40,7 @@
                             <select name="tipe" id="" class="form-control" required>
                                 <option value="Pilihan Ganda" {{ @$result->tipe == 'Pilihan Ganda' ? 'selected' : '' }}>Pilihan Ganda</option>
                                 <option value="Kalimat" {{ @$result->tipe == 'Kalimat' ? 'selected' : '' }}>Kalimat</option>
-                                <option value="Praktek" {{ @$result->tipe == 'Praktek' ? 'selected' : '' }}>Praktek</option>
+                                <option value="Kompasis" {{ @$result->tipe == 'Kompasis' ? 'selected' : '' }}>Kompasis</option>
                             </select>
                         </div>
                         <div class="form-group">
